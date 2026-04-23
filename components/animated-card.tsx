@@ -17,14 +17,18 @@ export function AnimatedCard({ children, className, delay = 0 }: AnimatedCardPro
       ref={ref}
       className={cn(
         "transition-all duration-700 ease-out",
-        hasIntersected ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
+        hasIntersected ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
         className,
       )}
-      style={{
-        transitionDelay: `${delay}ms`,
-      }}
+      style={{ transitionDelay: `${delay}ms` }}
     >
-      <Card className="bg-white shadow-lg border border-gray-200 h-full">{children}</Card>
+      <Card className="relative h-full gap-0 overflow-hidden border border-stroke-soft/70 bg-card/80 py-0 shadow-sm backdrop-blur-md">
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"
+        />
+        {children}
+      </Card>
     </div>
   )
 }
